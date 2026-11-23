@@ -7,12 +7,12 @@
   <initonvieworupdate>T</initonvieworupdate>
   <initsavedsearchcondition></initsavedsearchcondition>
   <inittriggertype></inittriggertype>
-  <isinactive>T</isinactive>
-  <islogenabled>T</islogenabled>
+  <isinactive>F</isinactive>
+  <islogenabled>F</islogenabled>
   <keephistory>ONLYWHENTESTING</keephistory>
   <name>NMP | Invoice Email Automation</name>
   <recordtypes>INVOICE</recordtypes>
-  <releasestatus>TESTING</releasestatus>
+  <releasestatus>RELEASED</releasestatus>
   <runasadmin>T</runasadmin>
   <initcondition>
     <formula><![CDATA[{datecreated} >= TO_DATE('11/20/2026', 'MM/DD/YYYY')]]></formula>
