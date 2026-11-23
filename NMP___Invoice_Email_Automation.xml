@@ -15,8 +15,8 @@
   <releasestatus>RELEASED</releasestatus>
   <runasadmin>T</runasadmin>
   <initcondition>
-    <formula><![CDATA[{datecreated} >= TO_DATE('11/20/2026', 'MM/DD/YYYY')]]></formula>
-    <type>FORMULA</type>
+    <formula></formula>
+    <type>VISUAL_BUILDER</type>
   </initcondition>
   <workflowstates>
     <workflowstate scriptid="workflowstate81">
