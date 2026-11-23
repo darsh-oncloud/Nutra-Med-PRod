@@ -124,7 +124,7 @@
     </workflowstate>
     <workflowstate scriptid="workflowstate82">
       <description></description>
-      <donotexitworkflow>F</donotexitworkflow>
+      <donotexitworkflow>T</donotexitworkflow>
       <name>State 2</name>
       <positionx>673</positionx>
       <positiony>283</positiony>
