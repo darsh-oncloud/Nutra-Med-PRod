@@ -8,8 +8,8 @@
   <initsavedsearchcondition></initsavedsearchcondition>
   <inittriggertype></inittriggertype>
   <isinactive>F</isinactive>
-  <islogenabled>F</islogenabled>
-  <keephistory>ONLYWHENTESTING</keephistory>
+  <islogenabled>T</islogenabled>
+  <keephistory>ALWAYS</keephistory>
   <name>NMP | Invoice Email Automation</name>
   <recordtypes>INVOICE</recordtypes>
   <releasestatus>RELEASED</releasestatus>
