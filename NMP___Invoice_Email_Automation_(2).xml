@@ -25,7 +25,7 @@
       <name>State 1</name>
       <positionx>673</positionx>
       <positiony>163</positiony>
-      <workflowactions triggertype="AFTERSUBMIT">
+      <workflowactions triggertype="ONENTRY">
         <sendemailaction scriptid="workflowaction311">
           <attachmentfield></attachmentfield>
           <attachmentfile></attachmentfile>
