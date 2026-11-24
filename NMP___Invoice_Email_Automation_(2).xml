@@ -15,14 +15,8 @@
   <releasestatus>RELEASED</releasestatus>
   <runasadmin>T</runasadmin>
   <initcondition>
-    <formula><![CDATA[isChecked("Email Sent") = 'F']]></formula>
+    <formula></formula>
     <type>VISUAL_BUILDER</type>
-    <parameters>
-      <parameter>
-        <name>Email Sent</name>
-        <value>[scriptid=custbody_email_sent]</value>
-      </parameter>
-    </parameters>
   </initcondition>
   <workflowstates>
     <workflowstate scriptid="workflowstate81">
@@ -30,8 +24,8 @@
       <donotexitworkflow>F</donotexitworkflow>
       <name>State 1</name>
       <positionx>673</positionx>
-      <positiony>163</positiony>
-      <workflowactions triggertype="AFTERSUBMIT">
+      <positiony>113</positiony>
+      <workflowactions triggertype="ONENTRY">
         <sendemailaction scriptid="workflowaction311">
           <attachmentfield></attachmentfield>
           <attachmentfile></attachmentfile>
@@ -76,27 +70,54 @@
           </initcondition>
         </sendemailaction>
       </workflowactions>
+      <workflowactions triggertype="BEFORELOAD">
+        <addbuttonaction scriptid="workflowaction314">
+          <buttondescription></buttondescription>
+          <checkconditionbeforeexecution>T</checkconditionbeforeexecution>
+          <conditionsavedsearch></conditionsavedsearch>
+          <contexttypes>ACTION|BANKCONNECTIVITY|BANKSTATEMENTPARSER|BUNDLEINSTALLATION|CLIENT|CSVIMPORT|CUSTOMGLLINES|CUSTOMMASSUPDATE|RECORDACTION|CUSTOMTOOL|DATASETBUILDER|DEBUGGER|EMAILCAPTURE|EVENTSUBSCRIBER|FICONNECTIVITY|FIPARSER|MAPREDUCE|OCRPLUGIN|OFFLINECLIENT|OTHER|PAYMENTPOSTBACK|PAYMENTGATEWAY|PLATFORMEXTENSION|PORTLET|PROMOTIONS|CONSOLRATEADJUSTOR|RESTWEBSERVICES|RESTLET|ADVANCEDREVREC|SCHEDULED|SDFINSTALLATION|SHIPPINGPARTNERS|WEBSERVICES|SUBSCRIBERSCRIPT|SUITELET|TAXCALCULATION|USEREVENT|USERINTERFACE|WORKBOOKBUILDER|WORKFLOW</contexttypes>
+          <eventtypes></eventtypes>
+          <exposetorecordactionapi>F</exposetorecordactionapi>
+          <isinactive>F</isinactive>
+          <label>Send Email</label>
+          <saverecordfirst>T</saverecordfirst>
+          <initcondition>
+            <formula><![CDATA["User" IN ("Employee1","Employee2")]]></formula>
+            <type>VISUAL_BUILDER</type>
+            <parameters>
+              <parameter>
+                <name>User</name>
+                <value>STDUSERUSER</value>
+              </parameter>
+              <parameter>
+                <name>Employee1</name>
+                <selectrecordtype>-4</selectrecordtype>
+                <value>[ACCOUNT_SPECIFIC_VALUE]</value>
+              </parameter>
+              <parameter>
+                <name>Employee2</name>
+                <selectrecordtype>-4</selectrecordtype>
+                <value>[ACCOUNT_SPECIFIC_VALUE]</value>
+              </parameter>
+            </parameters>
+          </initcondition>
+        </addbuttonaction>
+      </workflowactions>
       <workflowtransitions>
         <workflowtransition scriptid="workflowtransition249">
-          <buttonaction></buttonaction>
+          <buttonaction>[scriptid=customworkflow_nmp_invoice_email_au_2.workflowstate81.workflowaction314]</buttonaction>
           <conditionsavedsearch></conditionsavedsearch>
           <contexttypes>ACTION|BANKCONNECTIVITY|BANKSTATEMENTPARSER|BUNDLEINSTALLATION|CLIENT|CSVIMPORT|CUSTOMGLLINES|CUSTOMMASSUPDATE|RECORDACTION|CUSTOMTOOL|DATASETBUILDER|DEBUGGER|EMAILCAPTURE|EVENTSUBSCRIBER|FICONNECTIVITY|FIPARSER|MAPREDUCE|OCRPLUGIN|OFFLINECLIENT|OTHER|PAYMENTPOSTBACK|PAYMENTGATEWAY|PLATFORMEXTENSION|PORTLET|PROMOTIONS|CONSOLRATEADJUSTOR|RESTWEBSERVICES|RESTLET|ADVANCEDREVREC|SCHEDULED|SDFINSTALLATION|SHIPPINGPARTNERS|WEBSERVICES|SUBSCRIBERSCRIPT|SUITELET|TAXCALCULATION|USEREVENT|USERINTERFACE|WORKBOOKBUILDER|WORKFLOW</contexttypes>
           <eventtypes></eventtypes>
           <scheduledelay></scheduledelay>
           <scheduletimeunit></scheduletimeunit>
-          <tostate>[scriptid=customworkflow_nmp_invoice_email_au_2.workflowstate82]</tostate>
-          <triggertype>AFTERSUBMIT</triggertype>
+          <tostate>[scriptid=customworkflow_nmp_invoice_email_au_2.workflowstate83]</tostate>
+          <triggertype></triggertype>
           <waitforworkflow></waitforworkflow>
           <waitforworkflowstate></waitforworkflowstate>
           <initcondition>
-            <formula><![CDATA[isChecked("Email Sent") = 'F']]></formula>
+            <formula></formula>
             <type>VISUAL_BUILDER</type>
-            <parameters>
-              <parameter>
-                <name>Email Sent</name>
-                <value>[scriptid=custbody_email_sent]</value>
-              </parameter>
-            </parameters>
           </initcondition>
         </workflowtransition>
       </workflowtransitions>
@@ -105,8 +126,8 @@
       <description></description>
       <donotexitworkflow>F</donotexitworkflow>
       <name>State 2</name>
-      <positionx>673</positionx>
-      <positiony>303</positiony>
+      <positionx>223</positionx>
+      <positiony>173</positiony>
       <workflowactions triggertype="BEFORELOAD">
         <addbuttonaction scriptid="workflowaction312">
           <buttondescription></buttondescription>
@@ -130,31 +151,13 @@
           </initcondition>
         </addbuttonaction>
       </workflowactions>
-      <workflowtransitions>
-        <workflowtransition scriptid="workflowtransition250">
-          <buttonaction>[scriptid=customworkflow_nmp_invoice_email_au_2.workflowstate82.workflowaction312]</buttonaction>
-          <conditionsavedsearch></conditionsavedsearch>
-          <contexttypes>ACTION|BANKCONNECTIVITY|BANKSTATEMENTPARSER|BUNDLEINSTALLATION|CLIENT|CSVIMPORT|CUSTOMGLLINES|CUSTOMMASSUPDATE|RECORDACTION|CUSTOMTOOL|DATASETBUILDER|DEBUGGER|EMAILCAPTURE|EVENTSUBSCRIBER|FICONNECTIVITY|FIPARSER|MAPREDUCE|OCRPLUGIN|OFFLINECLIENT|OTHER|PAYMENTPOSTBACK|PAYMENTGATEWAY|PLATFORMEXTENSION|PORTLET|PROMOTIONS|CONSOLRATEADJUSTOR|RESTWEBSERVICES|RESTLET|ADVANCEDREVREC|SCHEDULED|SDFINSTALLATION|SHIPPINGPARTNERS|WEBSERVICES|SUBSCRIBERSCRIPT|SUITELET|TAXCALCULATION|USEREVENT|USERINTERFACE|WORKBOOKBUILDER|WORKFLOW</contexttypes>
-          <eventtypes></eventtypes>
-          <scheduledelay></scheduledelay>
-          <scheduletimeunit></scheduletimeunit>
-          <tostate>[scriptid=customworkflow_nmp_invoice_email_au_2.workflowstate83]</tostate>
-          <triggertype></triggertype>
-          <waitforworkflow></waitforworkflow>
-          <waitforworkflowstate></waitforworkflowstate>
-          <initcondition>
-            <formula></formula>
-            <type>VISUAL_BUILDER</type>
-          </initcondition>
-        </workflowtransition>
-      </workflowtransitions>
     </workflowstate>
     <workflowstate scriptid="workflowstate83">
       <description></description>
-      <donotexitworkflow>F</donotexitworkflow>
+      <donotexitworkflow>T</donotexitworkflow>
       <name>State 3</name>
       <positionx>673</positionx>
-      <positiony>463</positiony>
+      <positiony>253</positiony>
       <workflowactions triggertype="ONENTRY">
         <customaction scriptid="workflowaction313">
           <conditionsavedsearch></conditionsavedsearch>
