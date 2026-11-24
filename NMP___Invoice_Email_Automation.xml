@@ -94,6 +94,32 @@
             <type>VISUAL_BUILDER</type>
           </initcondition>
         </workflowtransition>
+        <workflowtransition scriptid="workflowtransition248">
+          <buttonaction></buttonaction>
+          <conditionsavedsearch></conditionsavedsearch>
+          <contexttypes>ACTION|BANKCONNECTIVITY|BANKSTATEMENTPARSER|BUNDLEINSTALLATION|CLIENT|CSVIMPORT|CUSTOMGLLINES|CUSTOMMASSUPDATE|RECORDACTION|CUSTOMTOOL|DATASETBUILDER|DEBUGGER|EMAILCAPTURE|EVENTSUBSCRIBER|FICONNECTIVITY|FIPARSER|MAPREDUCE|OCRPLUGIN|OFFLINECLIENT|OTHER|PAYMENTPOSTBACK|PAYMENTGATEWAY|PLATFORMEXTENSION|PORTLET|PROMOTIONS|CONSOLRATEADJUSTOR|RESTWEBSERVICES|RESTLET|ADVANCEDREVREC|SCHEDULED|SDFINSTALLATION|SHIPPINGPARTNERS|WEBSERVICES|SUBSCRIBERSCRIPT|SUITELET|TAXCALCULATION|USEREVENT|USERINTERFACE|WORKBOOKBUILDER|WORKFLOW</contexttypes>
+          <eventtypes></eventtypes>
+          <scheduledelay></scheduledelay>
+          <scheduletimeunit></scheduletimeunit>
+          <tostate>[scriptid=customworkflow_nmp_invoice_email_automat.workflowstate82]</tostate>
+          <triggertype>AFTERSUBMIT</triggertype>
+          <waitforworkflow></waitforworkflow>
+          <waitforworkflowstate></waitforworkflowstate>
+          <initcondition>
+            <formula><![CDATA[isChecked("Customer:Send Automated Invoice Email") = 'T' AND isChecked("Email Sent") = 'F']]></formula>
+            <type>VISUAL_BUILDER</type>
+            <parameters>
+              <parameter>
+                <name>Customer:Send Automated Invoice Email</name>
+                <value>STDBODYCUSTOMER:[scriptid=custentity_send_automated_invoice_email]</value>
+              </parameter>
+              <parameter>
+                <name>Email Sent</name>
+                <value>[scriptid=custbody_email_sent]</value>
+              </parameter>
+            </parameters>
+          </initcondition>
+        </workflowtransition>
       </workflowtransitions>
     </workflowstate>
     <workflowstate scriptid="workflowstate82">
@@ -101,7 +127,7 @@
       <donotexitworkflow>F</donotexitworkflow>
       <name>State 2</name>
       <positionx>673</positionx>
-      <positiony>283</positiony>
+      <positiony>303</positiony>
       <workflowactions triggertype="ONENTRY">
         <customaction scriptid="workflowaction309">
           <conditionsavedsearch></conditionsavedsearch>
@@ -121,31 +147,6 @@
           </initcondition>
         </customaction>
       </workflowactions>
-    </workflowstate>
-    <workflowstate scriptid="workflowstate83">
-      <description></description>
-      <donotexitworkflow>F</donotexitworkflow>
-      <name>State 3</name>
-      <positionx>673</positionx>
-      <positiony>63</positiony>
-      <workflowtransitions>
-        <workflowtransition scriptid="workflowtransition248">
-          <buttonaction></buttonaction>
-          <conditionsavedsearch></conditionsavedsearch>
-          <contexttypes>ACTION|BANKCONNECTIVITY|BANKSTATEMENTPARSER|BUNDLEINSTALLATION|CLIENT|CSVIMPORT|CUSTOMGLLINES|CUSTOMMASSUPDATE|RECORDACTION|CUSTOMTOOL|DATASETBUILDER|DEBUGGER|EMAILCAPTURE|EVENTSUBSCRIBER|FICONNECTIVITY|FIPARSER|MAPREDUCE|OCRPLUGIN|OFFLINECLIENT|OTHER|PAYMENTPOSTBACK|PAYMENTGATEWAY|PLATFORMEXTENSION|PORTLET|PROMOTIONS|CONSOLRATEADJUSTOR|RESTWEBSERVICES|RESTLET|ADVANCEDREVREC|SCHEDULED|SDFINSTALLATION|SHIPPINGPARTNERS|WEBSERVICES|SUBSCRIBERSCRIPT|SUITELET|TAXCALCULATION|USEREVENT|USERINTERFACE|WORKBOOKBUILDER|WORKFLOW</contexttypes>
-          <eventtypes></eventtypes>
-          <scheduledelay></scheduledelay>
-          <scheduletimeunit></scheduletimeunit>
-          <tostate>[scriptid=customworkflow_nmp_invoice_email_automat.workflowstate81]</tostate>
-          <triggertype></triggertype>
-          <waitforworkflow></waitforworkflow>
-          <waitforworkflowstate></waitforworkflowstate>
-          <initcondition>
-            <formula></formula>
-            <type>VISUAL_BUILDER</type>
-          </initcondition>
-        </workflowtransition>
-      </workflowtransitions>
     </workflowstate>
   </workflowstates>
 </workflow>
