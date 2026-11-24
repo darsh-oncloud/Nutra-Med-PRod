@@ -15,14 +15,8 @@
   <releasestatus>RELEASED</releasestatus>
   <runasadmin>T</runasadmin>
   <initcondition>
-    <formula><![CDATA[isChecked("Email Sent") = 'F']]></formula>
+    <formula></formula>
     <type>VISUAL_BUILDER</type>
-    <parameters>
-      <parameter>
-        <name>Email Sent</name>
-        <value>[scriptid=custbody_email_sent]</value>
-      </parameter>
-    </parameters>
   </initcondition>
   <workflowstates>
     <workflowstate scriptid="workflowstate81">
