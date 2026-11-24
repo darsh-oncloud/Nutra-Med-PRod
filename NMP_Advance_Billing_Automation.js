@@ -332,7 +332,7 @@ define(['N/record', 'N/search', 'N/runtime', 'N/log', 'N/workflow'],
                 workflow.initiate({
                     recordType: record.Type.INVOICE,
                     recordId: invoiceId,
-                    workflowId: 'customworkflow_nmp_invoice_email_automat'   // <-- production workflow ID
+                    workflowId: 'customworkflow_nmp_invoice_email_au_2'   // <-- production workflow ID
                 });
                 log.audit('Invoice Email Workflow Started', { ifNumber, invoiceId });
             } catch (err) {
