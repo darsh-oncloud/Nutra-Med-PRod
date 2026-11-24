@@ -108,7 +108,44 @@ define(['N/record', 'N/search', 'N/runtime', 'N/log', 'N/workflow'],
         log.audit('Lots Copied From IF', { orderline, lots });
     };
     /* ============================================================================================= */
+const syncInvoiceFromIf = (invoiceId, ff) => {
+    try {
+        const ifAddr = getIfShipAddress(ff);
+        const ifLots = getIfLots(ff);
+        const inv = record.load({ type: record.Type.INVOICE, id: invoiceId });
+        let changed = false;
 
+        // Ship To
+        if (ifAddr) {
+            const sub = inv.getSubrecord({ fieldId: 'shippingaddress' });
+            if (ADDRESS_FIELDS.some((f) => String(sub.getValue({ fieldId: f }) || '') !== String(ifAddr[f] || ''))) {
+                setInvoiceShipAddress(inv, ifAddr);
+                changed = true;
+            }
+        }
+
+        // Lot + Expiry columns
+        for (let i = 0; i < inv.getLineCount({ sublistId: 'item' }); i++) {
+            const lots = ifLots[String(inv.getSublistValue({ sublistId: 'item', fieldId: 'orderline', line: i }))];
+            if (!lots) continue;
+            const newLot = lots.map((l) => l.number).join(', ').substring(0, 300);
+            const newExp = lots.map((l) => l.expiry).join(', ').substring(0, 300);
+            if (String(inv.getSublistValue({ sublistId: 'item', fieldId: 'custcol_nscs_lot_number_porec', line: i }) || '') !== newLot) {
+                inv.setSublistValue({ sublistId: 'item', fieldId: 'custcol_nscs_lot_number_porec', line: i, value: newLot });
+                changed = true;
+            }
+            if (String(inv.getSublistValue({ sublistId: 'item', fieldId: 'custcol_so_expiration_date', line: i }) || '') !== newExp) {
+                inv.setSublistValue({ sublistId: 'item', fieldId: 'custcol_so_expiration_date', line: i, value: newExp });
+                changed = true;
+            }
+        }
+
+        if (changed) { inv.save(); log.audit('Invoice Updated From IF', { invoiceId }); }
+    } catch (e) {
+        log.error('Invoice Sync Failed', { invoiceId, message: e.message });
+    }
+};
+      
     const afterSubmit = (context) => {
         try {
             const T = context.UserEventType;
@@ -152,6 +189,7 @@ define(['N/record', 'N/search', 'N/runtime', 'N/log', 'N/workflow'],
             if (existing.length) {
                 const invoiceId = existing[0].id;
                 const jeId = ff.getValue('custbody_related_je');
+                syncInvoiceFromIf(invoiceId, ff); 
 
                 if (!(shipped && jeId))
                     return log.audit('Invoice Already Exists', { ifNumber, invoiceId, shipped });
