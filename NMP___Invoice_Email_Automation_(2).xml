@@ -65,8 +65,14 @@
           <template>[scriptid=custemailtmpl_nmp_sales_invoice_template]</template>
           <usetemplate>T</usetemplate>
           <initcondition>
-            <formula></formula>
+            <formula><![CDATA[isChecked("Email Sent") = 'F']]></formula>
             <type>VISUAL_BUILDER</type>
+            <parameters>
+              <parameter>
+                <name>Email Sent</name>
+                <value>[scriptid=custbody_email_sent]</value>
+              </parameter>
+            </parameters>
           </initcondition>
         </sendemailaction>
       </workflowactions>
