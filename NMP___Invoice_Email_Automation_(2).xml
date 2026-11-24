@@ -12,11 +12,17 @@
   <keephistory>ALWAYS</keephistory>
   <name>NMP | Invoice Email Automation (2)</name>
   <recordtypes>INVOICE</recordtypes>
-  <releasestatus>NOTINITIATING</releasestatus>
+  <releasestatus>RELEASED</releasestatus>
   <runasadmin>T</runasadmin>
   <initcondition>
-    <formula><![CDATA[{datecreated} >= TO_DATE('11/20/2026', 'MM/DD/YYYY')]]></formula>
-    <type>FORMULA</type>
+    <formula><![CDATA[isChecked("Email Sent") = 'F']]></formula>
+    <type>VISUAL_BUILDER</type>
+    <parameters>
+      <parameter>
+        <name>Email Sent</name>
+        <value>[scriptid=custbody_email_sent]</value>
+      </parameter>
+    </parameters>
   </initcondition>
   <workflowstates>
     <workflowstate scriptid="workflowstate81">
